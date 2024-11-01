@@ -1,0 +1,468 @@
+<html><head><base href="." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SCRIFY.XYZ - Elite Cyber Arsenal</title>
+<style>
+:root {
+  --primary: #00ff00;
+  --secondary: #008000;
+  --dark: #000000;
+  --light: #111111;
+  --accent: #20c20e;
+  --neon: #39ff14;
+  --font: 'Courier New', monospace;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font);
+}
+
+body {
+  background: var(--dark);
+  color: var(--primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  position: relative;
+}
+
+.scanline {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom,
+    rgba(255,255,255,0) 0%,
+    rgba(0,255,0,0.1) 50%,
+    rgba(0,255,0,0.2) 51%,
+    rgba(255,255,255,0) 100%);
+  animation: scanline 6s linear infinite;
+  pointer-events: none;
+  z-index: 999;
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100vh); }
+  100% { transform: translateY(100vh); }
+}
+
+.cyber-grid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(90deg, rgba(0,255,0,0.03) 1px, transparent 1px) 0 0,
+    linear-gradient(rgba(0,255,0,0.03) 1px, transparent 1px) 0 0;
+  background-size: 50px 50px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.hack-effect {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, rgba(0,0,0,0.8) 100%);
+  animation: hackPulse 4s ease infinite;
+  pointer-events: none;
+  z-index: 1;
+}
+
+@keyframes hackPulse {
+  0% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+  100% { opacity: 0.3; }
+}
+
+.header {
+  background: rgba(0,0,0,0.9);
+  padding: 3rem;
+  text-align: center;
+  border-bottom: 2px solid var(--primary);
+  position: relative;
+  overflow: hidden;
+}
+
+.header::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0,255,0,0.15) 0px,
+    rgba(0,255,0,0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+}
+
+.logo {
+  font-size: 3.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  position: relative;
+  z-index: 2;
+  text-shadow: 0 0 15px var(--primary);
+  letter-spacing: 5px;
+}
+
+.logo::before, .logo::after {
+  content: 'SCRIFY.XYZ';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: -1;
+}
+
+.logo::before {
+  color: #ff0000;
+  animation: glitch-1 2s infinite linear alternate-reverse;
+}
+
+.logo::after {
+  color: #0000ff;
+  animation: glitch-2 3s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-1 {
+  0% { transform: none; opacity: 1; }
+  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+  10% { transform: none; opacity: 1; }
+  27% { transform: none; opacity: 1; }
+  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+  35% { transform: none; opacity: 1; }
+  52% { transform: none; opacity: 1; }
+  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+  50% { transform: none; opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+
+@keyframes glitch-2 {
+  0% { transform: none; opacity: 0.25; }
+  7% { transform: translate(2px, 3px); opacity: 0.5; }
+  10% { transform: none; opacity: 0.25; }
+  27% { transform: none; opacity: 0.25; }
+  30% { transform: translate(-2px, -3px); opacity: 0.5; }
+  35% { transform: none; opacity: 0.25; }
+  52% { transform: none; opacity: 0.25; }
+  55% { transform: translate(1px, -1px); opacity: 0.5; }
+  50% { transform: none; opacity: 0.25; }
+  100% { transform: none; opacity: 0.25; }
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2.5rem;
+  padding: 3rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.tool-card {
+  background: rgba(0,20,0,0.8);
+  border: 1px solid var(--primary);
+  padding: 2rem;
+  transition: all 0.4s ease;
+  position: relative;
+  backdrop-filter: blur(5px);
+  box-shadow: 
+    0 0 10px var(--primary),
+    inset 0 0 15px rgba(0,255,0,0.3);
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 10px var(--primary), inset 0 0 15px rgba(0,255,0,0.3); }
+  50% { box-shadow: 0 0 20px var(--neon), inset 0 0 30px rgba(0,255,0,0.5); }
+  100% { box-shadow: 0 0 10px var(--primary), inset 0 0 15px rgba(0,255,0,0.3); }
+}
+
+.tool-icon {
+  width: 60px;
+  height: 60px;
+  margin-bottom: 1.5rem;
+  filter: drop-shadow(0 0 8px var(--primary));
+}
+
+.tool-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.tool-description {
+  color: var(--accent);
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  background: transparent;
+  color: var(--primary);
+  text-decoration: none;
+  border: 1px solid var(--primary);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0,255,0,0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.cta-button:hover::before {
+  left: 100%;
+}
+
+.cta-button:hover {
+  background: rgba(0,255,0,0.1);
+  box-shadow: 0 0 20px var(--primary);
+  text-shadow: 0 0 5px var(--primary);
+}
+
+@keyframes glitch {
+  0% { transform: none; opacity: 1; }
+  7% { transform: skew(-0.5deg, -0.9deg); opacity: 0.75; }
+  10% { transform: none; opacity: 1; }
+  27% { transform: none; opacity: 1; }
+  30% { transform: skew(0.8deg, -0.1deg); opacity: 0.75; }
+  35% { transform: none; opacity: 1; }
+  52% { transform: none; opacity: 1; }
+  55% { transform: skew(-1deg, 0.2deg); opacity: 0.75; }
+  50% { transform: none; opacity: 1; }
+  100% { transform: none; opacity: 1; }
+}
+
+.terminal-prefix {
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.terminal-prefix::before {
+  content: '> ';
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+</style>
+</head>
+<body>
+<div class="cyber-grid"></div>
+<div class="hack-effect"></div>
+<div class="scanline"></div>
+<canvas id="matrix" class="matrix-bg"></canvas>
+
+<header class="header">
+    <div class="logo">SCRIFY.XYZ</div>
+    <p class="terminal-prefix">Advanced Hacking Tools & Security Suite</p>
+</header>
+
+<main class="tools-grid">
+    <div class="tool-card">
+      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
+        <path d="M16 1H8c-1.1 0-2 .9-2 2v14h2V3h8V1zm2 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H6V7h12v14z"/>
+      </svg>
+      <h2 class="tool-title">Network Scanner</h2>
+      <p class="tool-description">Scan your local network to discover devices and their IP addresses.</p>
+      <a href="https://scrify.xyz/network-scanner" class="cta-button">Try Now</a>
+    </div>
+
+    <div class="tool-card">
+      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--secondary)">
+        <path d="M21,7H18V4a1,1 0 0,0-1-1H7a1,1 0 0,0-1,1v3H3a1,1 0 0,0-1,1v11a1,1 0 0,0 1,1h18a1,1 0 0,0 1-1V8A1,1 0 0,0 21,7zM18,8v11H6V8H18zM13,9H8v2h5V9zm0,4H8v2h5v-2zm0,4H8v2h5v-2z"/>
+      </svg>
+      <h2 class="tool-title">Port Scanner</h2>
+      <p class="tool-description">Check the status of ports on a target IP address to identify open ports.</p>
+      <a href="https://scrify.xyz/port-scanner" class="cta-button">Try Now</a>
+    </div>
+
+    <div class="tool-card">
+      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
+        <path d="M12 2C6.48 2 2 5.58 2 10c0 4.42 4.48 8 10 8s10-3.58 10-8c0-4.42-4.48-8-10-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-8h2v4h-2V8zm0 6h2v2h-2v-2z"/>
+      </svg>
+      <h2 class="tool-title">IP Geolocation</h2>
+      <p class="tool-description">Find the geographical location of an IP address quickly and accurately.</p>
+      <a href="https://scrify.xyz/ip-geolocation" class="cta-button">Try Now</a>
+    </div>
+
+    <div class="tool-card">
+      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--secondary)">
+        <path d="M16 1H8c-1.1 0-2 .9-2 2v14h2V3h8V1zm2 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H6V7h12v14z"/>
+      </svg>
+      <h2 class="tool-title">Password Encryptor</h2>
+      <p class="tool-description">Securely encrypt and decrypt your passwords with this handy tool.</p>
+      <a href="https://scrify.xyz/password-encryptor" class="cta-button">Try Now</a>
+    </div>
+</main>
+
+<script>
+const canvas = document.getElementById('matrix');
+const ctx = canvas.getContext('2d');
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+const katakana = 'アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン';
+const latin = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+const nums = '0123456789';
+const symbols = '!@#$%^&*()_+-=[]{}|;:,.<>?~';
+
+const alphabet = katakana + latin + nums + symbols;
+
+const fontSize = 16;
+const columns = canvas.width/fontSize;
+
+const rainDrops = Array(Math.floor(columns)).fill(1);
+
+ctx.textAlign = 'center';
+
+function draw() {
+    ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.fillStyle = '#0F0';
+    ctx.font = fontSize + 'px monospace';
+
+    for(let i = 0; i < rainDrops.length; i++) {
+        const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+        const x = i * fontSize;
+        const y = rainDrops[i] * fontSize;
+
+        ctx.fillText(text, x, y);
+        
+        if(y > canvas.height && Math.random() > 0.975) {
+            rainDrops[i] = 0;
+        }
+        rainDrops[i]++;
+    }
+}
+
+setInterval(draw, 30);
+
+function createGlitchEffect(element) {
+  let glitchInterval;
+  
+  element.addEventListener('mouseover', () => {
+    glitchInterval = setInterval(() => {
+      const glitchAmount = Math.random() * 10;
+      const color = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
+      element.style.transform = `translate(${Math.random() * glitchAmount - glitchAmount/2}px, ${Math.random() * glitchAmount - glitchAmount/2}px)`;
+      element.style.textShadow = `2px 2px ${color}`;
+    }, 50);
+  });
+  
+  element.addEventListener('mouseout', () => {
+    clearInterval(glitchInterval);
+    element.style.transform = 'none';
+    element.style.textShadow = 'none';
+  });
+}
+
+document.querySelectorAll('.tool-card').forEach(createGlitchEffect);
+
+const particles = [];
+const particleCount = 50;
+
+class Particle {
+  constructor() {
+    this.x = Math.random() * canvas.width;
+    this.y = Math.random() * canvas.height;
+    this.vx = Math.random() * 2 - 1;
+    this.vy = Math.random() * 2 - 1;
+    this.size = Math.random() * 3;
+  }
+  
+  update() {
+    this.x += this.vx;
+    this.y += this.vy;
+    
+    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
+  }
+  
+  draw() {
+    ctx.fillStyle = 'rgba(0,255,0,0.5)';
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.fill();
+  }
+}
+
+for(let i = 0; i < particleCount; i++) {
+  particles.push(new Particle());
+}
+
+function drawParticles() {
+  particles.forEach(particle => {
+    particle.update();
+    particle.draw();
+  });
+}
+
+function draw() {
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+  drawParticles();
+  
+  ctx.fillStyle = '#0F0';
+  ctx.font = fontSize + 'px monospace';
+
+  for(let i = 0; i < rainDrops.length; i++) {
+      const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+      const x = i * fontSize;
+      const y = rainDrops[i] * fontSize;
+
+      ctx.fillText(text, x, y);
+      
+      if(y > canvas.height && Math.random() > 0.975) {
+          rainDrops[i] = 0;
+      }
+      rainDrops[i]++;
+  }
+}
+
+setInterval(draw, 30);
+
+window.addEventListener('resize', () => {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+});
+</script>
+</body>
+</html>
