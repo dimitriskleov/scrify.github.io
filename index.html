@@ -1,7 +1,7 @@
 <html><head><base href="." />
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>scrify.xyz</title>
+<title>SCRIFY.XYZ</title>
 <style>
 :root {
   --primary: #00ff00;
@@ -162,6 +162,64 @@ body {
   100% { transform: none; opacity: 0.25; }
 }
 
+.download-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    padding: 3rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.download-card {
+    background: rgba(0,20,0,0.8);
+    border: 1px solid var(--primary);
+    padding: 2rem;
+    transition: all 0.4s ease;
+    position: relative;
+    backdrop-filter: blur(5px);
+    box-shadow: 0 0 10px var(--primary), inset 0 0 15px rgba(0,255,0,0.3);
+    animation: pulse 2s infinite;
+}
+
+.download-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0;
+    color: var(--accent);
+    font-size: 0.9rem;
+}
+
+.download-progress {
+    width: 100%;
+    height: 4px;
+    background: rgba(0,255,0,0.1);
+    margin: 1rem 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.progress-bar {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--primary);
+    animation: progress 2s ease infinite;
+}
+
+@keyframes progress {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(200%); }
+}
+
+.download-btn {
+    width: 100%;
+    text-align: center;
+    margin-top: 1rem;
+}
+
 .tools-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
@@ -289,44 +347,56 @@ body {
 
 <header class="header">
     <div class="logo">SCRIFY.XYZ</div>
-    <p class="terminal-prefix">Advanced Hacking Tools & Security Suite</p>
+    <p class="terminal-prefix">Elite Security Tools Download Center</p>
 </header>
 
-<main class="tools-grid">
-    <div class="tool-card">
-      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
-        <path d="M16 1H8c-1.1 0-2 .9-2 2v14h2V3h8V1zm2 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H6V7h12v14z"/>
-      </svg>
-      <h2 class="tool-title">Network Scanner</h2>
-      <p class="tool-description">Scan your local network to discover devices and their IP addresses.</p>
-      <a href="https://scrify.xyz/network-scanner" class="cta-button">Download</a>
+<main class="download-grid">
+    <div class="download-card">
+        <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <h2 class="tool-title">Network Scanner v1.2.3</h2>
+        <p class="tool-description">Advanced network mapping and device discovery tool</p>
+        <div class="download-info">
+            <span class="file-size">Size: 12.4 MB</span>
+            <span class="version">Latest Version: 1.2.3</span>
+        </div>
+        <div class="download-progress">
+            <div class="progress-bar"></div>
+        </div>
+        <a href="https://scrify.xyz/downloads/network-scanner.exe" class="cta-button download-btn">Download Now</a>
     </div>
 
-    <div class="tool-card">
-      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--secondary)">
-        <path d="M21,7H18V4a1,1 0 0,0-1-1H7a1,1 0 0,0-1,1v3H3a1,1 0 0,0-1,1v11a1,1 0 0,0 1,1h18a1,1 0 0,0 1-1V8A1,1 0 0,0 21,7zM18,8v11H6V8H18zM13,9H8v2h5V9zm0,4H8v2h5v-2zm0,4H8v2h5v-2z"/>
-      </svg>
-      <h2 class="tool-title">Port Scanner</h2>
-      <p class="tool-description">Check the status of ports on a target IP address to identify open ports.</p>
-      <a href="https://scrify.xyz/port-scanner" class="cta-button">Download</a>
+    <div class="download-card">
+        <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <h2 class="tool-title">Port Scanner v2.0.1</h2>
+        <p class="tool-description">High-speed port scanning and service detection</p>
+        <div class="download-info">
+            <span class="file-size">Size: 8.7 MB</span>
+            <span class="version">Latest Version: 2.0.1</span>
+        </div>
+        <div class="download-progress">
+            <div class="progress-bar"></div>
+        </div>
+        <a href="https://scrify.xyz/downloads/port-scanner.exe" class="cta-button download-btn">Download Now</a>
     </div>
 
-    <div class="tool-card">
-      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
-        <path d="M12 2C6.48 2 2 5.58 2 10c0 4.42 4.48 8 10 8s10-3.58 10-8c0-4.42-4.48-8-10-8zm0 14c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm-1-8h2v4h-2V8zm0 6h2v2h-2v-2z"/>
-      </svg>
-      <h2 class="tool-title">IP Geolocation</h2>
-      <p class="tool-description">Find the geographical location of an IP address quickly and accurately.</p>
-      <a href="https://scrify.xyz/ip-geolocation" class="cta-button">Download</a>
-    </div>
-
-    <div class="tool-card">
-      <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--secondary)">
-        <path d="M16 1H8c-1.1 0-2 .9-2 2v14h2V3h8V1zm2 4H6c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H6V7h12v14z"/>
-      </svg>
-      <h2 class="tool-title">Password Encryptor</h2>
-      <p class="tool-description">Securely encrypt and decrypt your passwords with this handy tool.</p>
-      <a href="https://scrify.xyz/password-encryptor" class="cta-button">Download</a>
+    <div class="download-card">
+        <svg class="tool-icon" viewBox="0 0 24 24" fill="var(--primary)">
+            <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+        </svg>
+        <h2 class="tool-title">IP Geolocation Tool v1.1.0</h2>
+        <p class="tool-description">Precise IP tracking and location analysis</p>
+        <div class="download-info">
+            <span class="file-size">Size: 6.2 MB</span>
+            <span class="version">Latest Version: 1.1.0</span>
+        </div>
+        <div class="download-progress">
+            <div class="progress-bar"></div>
+        </div>
+        <a href="https://scrify.xyz/downloads/ip-geo.exe" class="cta-button download-btn">Download Now</a>
     </div>
 </main>
 
@@ -374,90 +444,19 @@ function draw() {
 
 setInterval(draw, 30);
 
-function createGlitchEffect(element) {
-  let glitchInterval;
-  
-  element.addEventListener('mouseover', () => {
-    glitchInterval = setInterval(() => {
-      const glitchAmount = Math.random() * 10;
-      const color = `rgb(${Math.random() * 255},${Math.random() * 255},${Math.random() * 255})`;
-      element.style.transform = `translate(${Math.random() * glitchAmount - glitchAmount/2}px, ${Math.random() * glitchAmount - glitchAmount/2}px)`;
-      element.style.textShadow = `2px 2px ${color}`;
-    }, 50);
-  });
-  
-  element.addEventListener('mouseout', () => {
-    clearInterval(glitchInterval);
-    element.style.transform = 'none';
-    element.style.textShadow = 'none';
-  });
-}
-
-document.querySelectorAll('.tool-card').forEach(createGlitchEffect);
-
-const particles = [];
-const particleCount = 50;
-
-class Particle {
-  constructor() {
-    this.x = Math.random() * canvas.width;
-    this.y = Math.random() * canvas.height;
-    this.vx = Math.random() * 2 - 1;
-    this.vy = Math.random() * 2 - 1;
-    this.size = Math.random() * 3;
-  }
-  
-  update() {
-    this.x += this.vx;
-    this.y += this.vy;
-    
-    if(this.x < 0 || this.x > canvas.width) this.vx *= -1;
-    if(this.y < 0 || this.y > canvas.height) this.vy *= -1;
-  }
-  
-  draw() {
-    ctx.fillStyle = 'rgba(0,255,0,0.5)';
-    ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fill();
-  }
-}
-
-for(let i = 0; i < particleCount; i++) {
-  particles.push(new Particle());
-}
-
-function drawParticles() {
-  particles.forEach(particle => {
-    particle.update();
-    particle.draw();
-  });
-}
-
-function draw() {
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-  drawParticles();
-  
-  ctx.fillStyle = '#0F0';
-  ctx.font = fontSize + 'px monospace';
-
-  for(let i = 0; i < rainDrops.length; i++) {
-      const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
-      const x = i * fontSize;
-      const y = rainDrops[i] * fontSize;
-
-      ctx.fillText(text, x, y);
-      
-      if(y > canvas.height && Math.random() > 0.975) {
-          rainDrops[i] = 0;
-      }
-      rainDrops[i]++;
-  }
-}
-
-setInterval(draw, 30);
+document.querySelectorAll('.download-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+        const card = e.target.closest('.download-card');
+        const progress = card.querySelector('.progress-bar');
+        
+        progress.style.animation = 'none';
+        progress.offsetHeight; // Trigger reflow
+        progress.style.animation = null;
+        
+        // Simulate download start
+        card.classList.add('downloading');
+    });
+});
 
 window.addEventListener('resize', () => {
     canvas.width = window.innerWidth;
