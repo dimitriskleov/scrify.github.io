@@ -253,8 +253,7 @@ body {
 .tool-icon {
   width: 60px;
   height: 60px;
-  margin-bottom: 1.5rem;
-  filter: drop-shadow(0 0 8px var(--primary));
+  margin-bottom: 1rem;
 }
 
 .tool-title {
@@ -441,6 +440,15 @@ document.querySelectorAll('.download-btn').forEach(btn => {
         
         // Simulate download start
         card.classList.add('downloading');
+    });
+});
+
+// Smooth scrolling to main content
+window.addEventListener('load', () => {
+    const main = document.querySelector('main');
+    window.scrollTo({
+        top: main.offsetTop,
+        behavior: 'smooth'
     });
 });
 
